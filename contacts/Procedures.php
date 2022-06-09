@@ -2,11 +2,14 @@
 require_once('Connection.php');
 class Procedures
 {
-    private $conexion;
+    private mysqli $conexion;
+    private array $info;
+
     public function __construct()
     {
-        $mysql = new connection();
+        $mysql = new Connection();
         $this->conexion = $mysql->get_connection();
+        $this->info = $mysql->get_info();
     }
 
     public function insert_localidad(String $nombre): void
@@ -67,6 +70,11 @@ class Procedures
             $return[] = $rowTemp;
         }
         return $return;
+    }
+
+    public function get_info(): array
+    {
+        return $this->info;
     }
 
     public function close_connection(): void
