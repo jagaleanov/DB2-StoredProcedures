@@ -47,7 +47,7 @@ CREATE PROCEDURE get_full_data() BEGIN
 SELECT 
 	clientes.cli_id,clientes.cli_nombre,tipos_cliente.tcl_nombre,localidades.loc_nombre 
 FROM clientes 
-	JOIN tipos_cliente ON clientes.tcl_id=tipos_cliente.tcl_id 
+    JOIN tipos_cliente ON clientes.tcl_id=tipos_cliente.tcl_id 
     JOIN localidades ON clientes.loc_id=localidades.loc_id;
 END;
 // DELIMITER  ;
