@@ -23,31 +23,31 @@ CREATE PROCEDURE insert_tipos_cliente( IN _tcl_nombre varchar(255) ) BEGIN INSER
 -- procedimiento para listar los clientes
 DELIMITER // 
 CREATE PROCEDURE get_clientes() BEGIN
-SELECT * FROM clientes; 
+    SELECT * FROM clientes; 
 END;
 // DELIMITER  ;
 
 -- procedimiento para listar las localidades
 DELIMITER // 
 CREATE PROCEDURE get_localidades() BEGIN
-SELECT * FROM localidades; 
+    SELECT * FROM localidades; 
 END;
 // DELIMITER  ;
 
 -- procedimiento para listar los tipos de cliente
 DELIMITER // 
 CREATE PROCEDURE get_tipos_cliente() BEGIN
-SELECT * FROM tipos_cliente; 
+    SELECT * FROM tipos_cliente; 
 END;
 // DELIMITER  ;
 
 -- procedimiento para listar toda la info enlazada
 DELIMITER // 
 CREATE PROCEDURE get_full_data() BEGIN
-SELECT 
-	clientes.cli_id,clientes.cli_nombre,tipos_cliente.tcl_nombre,localidades.loc_nombre 
-FROM clientes 
-    JOIN tipos_cliente ON clientes.tcl_id=tipos_cliente.tcl_id 
-    JOIN localidades ON clientes.loc_id=localidades.loc_id;
+    SELECT 
+        clientes.cli_id,clientes.cli_nombre,tipos_cliente.tcl_nombre,localidades.loc_nombre 
+    FROM clientes 
+        JOIN tipos_cliente ON clientes.tcl_id=tipos_cliente.tcl_id 
+        JOIN localidades ON clientes.loc_id=localidades.loc_id;
 END;
 // DELIMITER  ;
