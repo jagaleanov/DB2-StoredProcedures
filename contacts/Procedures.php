@@ -11,31 +11,22 @@ class Procedures
 
     public function insert_localidad(String $nombre): void
     {
-        $datos = array(
-            "_cli_nombre" => $nombre,
-        );
         $statement = $this->conexion->prepare("CALL insert_localidades(?)");
-        $statement->bind_param("s", $datos["_cli_nombre"]);
+        $statement->bind_param("s", $nombre);
         $statement->execute();
     }
 
     public function insert_tipo_cliente(String $nombre): void
     {
-        $datos = array("_tcl_nombre " => $nombre);
         $statement = $this->conexion->prepare("CALL insert_tipos_cliente(?)");
-        $statement->bind_param("s", $datos["_tcl_nombre "]);
+        $statement->bind_param("s", $nombre);
         $statement->execute();
     }
 
     public function insert_cliente(String $nombre, int $tcl_id, int $loc_id): void
     {
-        $datos = array(
-            "_cli_nombre" => $nombre,
-            "_tcl_id" => $tcl_id,
-            "_loc_id" => $loc_id,
-        );
         $statement = $this->conexion->prepare("CALL insert_clientes(?,?,?)");
-        $statement->bind_param("sii", $datos["_cli_nombre"], $datos["_tcl_id"], $datos["_loc_id"]);
+        $statement->bind_param("sii", $nombre, $tcl_id, $loc_id);
         $statement->execute();
     }
 
@@ -63,7 +54,7 @@ class Procedures
         return $this->fetch($statement);
     }
 
-    public function fetch($statement)
+    public function fetch($statement): array
     {
         $statement->execute();
         $result = $statement->get_result();
